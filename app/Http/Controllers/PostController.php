@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Inertia\Response;
-use function Termwind\render;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class PostController extends Controller
 {
@@ -16,7 +15,7 @@ class PostController extends Controller
         $query = Post::query();
 
         if ($request->filled('search')) {
-            $query->where('title', 'like', '%' . $request->search . '%');
+            $query->where('title', 'like', '%'.$request->search.'%');
         }
 
         $posts = $query->orderBy('id', 'DESC')->paginate(5)->withQueryString();
